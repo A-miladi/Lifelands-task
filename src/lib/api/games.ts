@@ -8,23 +8,31 @@ export type GetGamesParams = {
   signal?: AbortSignal;
 };
 
-/**
- * fetch یک صفحه از بازی‌ها.
- * فقط server-side صدا زده می‌شود (client.ts با server-only محافظت شده).
- */
+const EMPTY_PAGE: GamesPage = {
+  pageId: 1,
+  eachPerPage: 12,
+  searchValue: "",
+  total: 0,
+  games: [],
+};
+
 export async function getGames({
   page = 1,
   search = "",
   signal,
 }: GetGamesParams = {}): Promise<GamesPage> {
-  const response = await apiClient.get<ApiEnvelope<GamesPage>>("/games", {
-    params: { pageId: page, searchValue: search },
-    signal,
-  });
+  try {
+    const response = await apiClient.get<ApiEnvelope<GamesPage>>("/games", {
+      params: { pageId: page, searchValue: search },
+      signal,
+    });
 
-  if (!response.data.state) {
-    throw new Error("Lifelands API returned state:false");
+    if (!response.data.state) {
+      return EMPTY_PAGE;
+    }
+
+    return response.data.data;
+  } catch {
+    return EMPTY_PAGE;
   }
-
-  return response.data.data;
 }

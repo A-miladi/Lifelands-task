@@ -3,7 +3,7 @@ import { getGames } from "@/lib/api/games";
 import { GameExplorer } from "@/components/games/GameExplorer";
 import { GameCardSkeleton } from "@/components/games/GameCardSkeleton";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 async function ExplorerLoader() {
   const initialData = await getGames({ page: 1 });
@@ -28,8 +28,10 @@ function ExplorerFallback() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<ExplorerFallback />}>
-      <ExplorerLoader />
-    </Suspense>
+    <main>
+      <Suspense fallback={<ExplorerFallback />}>
+        <ExplorerLoader />
+      </Suspense>
+    </main>
   );
 }
