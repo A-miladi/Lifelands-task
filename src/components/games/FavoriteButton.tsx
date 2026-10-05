@@ -24,7 +24,7 @@ export function FavoriteButton({ gameId }: FavoriteButtonProps) {
       }}
       className={
         "flex h-9 w-9 items-center justify-center rounded-full " +
-        "bg-white/95 shadow-[0_1px_2px_rgba(15,23,42,0.15)] backdrop-blur-sm " +
+        "bg-white/85 shadow-[0_1px_2px_rgba(15,23,42,0.15)] backdrop-blur-sm " +
         "transition-all duration-200 ease-[var(--ease-spring)] " +
         "hover:scale-110 active:scale-95 " +
         "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500/30"
@@ -33,7 +33,7 @@ export function FavoriteButton({ gameId }: FavoriteButtonProps) {
       <svg
         aria-hidden
         viewBox="0 0 24 24"
-        className={`h-4 w-4 transition-colors ${
+        className={`h-5 w-5 transition-colors ${
           isFavorite ? "fill-red-500 text-red-500" : "fill-none text-gray-600"
         }`}
         stroke="currentColor"

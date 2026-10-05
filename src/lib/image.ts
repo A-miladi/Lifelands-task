@@ -1,4 +1,4 @@
-const IMAGE_BASE = "https://lifelands.ir";
+const IMAGE_BASE = "https://dl.lifelands.ir";
 
 export function resolveImageUrl(path: string): string {
   if (!path) return "/game-placeholder.svg";
